@@ -1,11 +1,14 @@
 Package: fars
 Type: Package
-Title: What the Package Does (Title Case)
+Title: FARS accident data analysis
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Depends: R(>=3.3.2)
+Imports: readr, tidyr, magrittr, dplyr, maps, graphics
+Author: Julia Hoffman <kurowska@gmail.com>
+Maintainer: Julia Hoffman <kurowska@gmail.com>
+Description: The package contains functions suitable for analyzing data from
+    FARS system (http://www-fars.nhtsa.dot.gov/).
+License: GPL(>=3)
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/kurowska/fars
