@@ -9,64 +9,86 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette provides an overview of the FARS package functionality. The package 
+This vignette provides an overview of the `fars` package functionality. The package 
 contains a set of functions built for analysis of data from Fatality Analysis 
 Reporting System (FARS). FARS is a nationwide census providing NHTSA, Congress and the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes. More information about the system can be found [here](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars).
 
+**NOTE 1:**
+The examples in this vignettes were built on files provided with the package.
+These files are located in folder inst/exdata. In order to use these files 
+the filename should be built in the following way:
+
+`file <- system.file("exdata",make_filename(year), package = "fars")`
+
+**NOTE 2:**
+
+The functions read data files which are placed in the working directory.
+
+## Libraries
+
+Libraries needed for the `fars` package:
 
 ```{r libraries,message=FALSE}
 library(fars)
-library(dplyr)
+library(magrittr)
 library(maps)
 ```
 
+## Package functions
+
+There are five exported functions available to users:
+
+* make_filename()
+* fars_read()
+* fars_read_years()
+* fars_summarize_years()
+* fars_map_state()
+
+For the purposes of these examples presented in this vignette, data from FARS, 
+for years 2013-2015 will be used. It can be found in the package directory 
+in `\extdata` folder.
+
 ## Reading data files
 
-The function \code{fars_read()} provides means to read data from a file with path 
-provided as an argument. It returns a tibble with loaded data:
+The function `make_filename()` takes as an argument a four-digit year and make a 
+file name for the function `fars_read()`, which in turn provides means to read 
+data from a file with path provided as an argument. It returns a tibble with 
+loaded data:
+
+```{r make_filename}
+make_filename(2013)
+```
 
 ```{r read_data}
-filename <- system.file("data/accident_2013.csv.bz2", package = "fars")
+filename <- system.file("exdata","accident_2013.csv.bz2", package = "fars")
 fars_read(filename)
 ```
 
+## Summary of accident data
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+The function `fars_read_years()` takes as an argument a four digit year (in the form `2013` or `"2013"`), or a vector of years (`2013:2015`). It returns a tibble with two columns: MONTH and year for each accident, if the data files are available.
+As mentioned in NOTE2, the data files need to be located in the working directory.
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+fars_read_years(2013:2015)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+The above data can be summarized by function `fars_summarize_years()` which takes the same input ast `fars_read_years()` and if the corresponding files with data are available, it returns a summary table with number of accidents per year and month. 
+As mentioned in NOTE2, the data files need to be located in the working directory.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r}
+fars_summarize_years(2013:2015)
 ```
 
-Also a quote using `>`:
+## Plot accident locations
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+Function `fars_map_state()` takes as arguments state index and year and returns 
+a plot with the contour of the state with accident locations. The state indices 
+need to correspond to available indices from the data set. The states are numbered alphabetically and the corresponding list can be found [here (page 23)](https://ire.org/media/uploads/files/datalibrary/samplefiles/DOT%20Fatality%20Analysis%20Reporting%20System%20-%20Simplified/USERGUIDE-2014.pdf). 
+As mentioned in NOTE2, the data files need to be located in the working directory.
+
+
+```{r}
+# California example
+fars_map_state(6, 2015)
+```
