@@ -2,7 +2,6 @@ Package: fars
 Type: Package
 Title: FARS accident data analysis
 Version: 0.1.0
-Depends: R(>=3.3.2)
 Imports: readr, tidyr, magrittr, dplyr, maps, graphics
 Author: Julia Hoffman <kurowska@gmail.com>
 Maintainer: Julia Hoffman <kurowska@gmail.com>
@@ -12,3 +11,6 @@ License: GPL(>=3)
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/kurowska/fars
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
