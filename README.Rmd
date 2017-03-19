@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-https://travis-ci.org/kurowska/fars.svg?branch=master
+[![Travis-CI Build Status](https://travis-ci.org/kurowska/fars.svg?branch=master)](https://travis-ci.org/kurowska/fars.svg?branch=master)
 
 # Package for Fatality Analysis Reporting System
 
-##Installation:
+## Installation:
 
 This package can be installed in R via the command
 ```
