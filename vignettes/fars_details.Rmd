@@ -69,15 +69,15 @@ fars_read(filename)
 The function `fars_read_years()` takes as an argument a four digit year (in the form `2013` or `"2013"`), or a vector of years (`2013:2015`). It returns a tibble with two columns: MONTH and year for each accident, if the data files are available.
 As mentioned in NOTE2, the data files need to be located in the working directory.
 
-```{r}
+```
 fars_read_years(2013:2015)
 ```
 
 The above data can be summarized by function `fars_summarize_years()` which takes the same input ast `fars_read_years()` and if the corresponding files with data are available, it returns a summary table with number of accidents per year and month. 
 As mentioned in NOTE2, the data files need to be located in the working directory.
 
-```{r}
-fars_summarize_years(2013:2015)
+```
+fars_summarize_years(2013)
 ```
 
 ## Plot accident locations
@@ -88,7 +88,7 @@ need to correspond to available indices from the data set. The states are number
 As mentioned in NOTE2, the data files need to be located in the working directory.
 
 
-```{r}
+```
 # California example
-fars_map_state(6, 2015)
+fars_map_state(6, 2013)
 ```
