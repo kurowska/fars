@@ -11,3 +11,12 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
+
+# Package for Fatality Analysis Reporting System
+
+##Installation:
+
+This package can be installed in R via the command
+```
+devtools::install_github("AybarCL/fars")
+```
