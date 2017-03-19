@@ -12,11 +12,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+https://travis-ci.org/kurowska/fars.svg?branch=master
+
 # Package for Fatality Analysis Reporting System
 
 ##Installation:
 
 This package can be installed in R via the command
 ```
-devtools::install_github("AybarCL/fars")
+devtools::install_github("kurowska/fars")
 ```
